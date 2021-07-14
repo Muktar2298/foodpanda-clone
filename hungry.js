@@ -16,14 +16,14 @@ const loadData = (searchInputText) => {
 // --displayMeal --//
 const displayMeal = (data) => {
   const mealsResult = data.meals;
-  //   console.log(meals);
-  if (data.meals) {
+  let mealInfo = "";
+  const mealsDiv = document.getElementById("meal-results");
+  if (mealsResult) {
     const meals = mealsResult.forEach((meal) => {
       console.log(meal);
-      const mealsDiv = document.getElementById("meal-results");
       const mealDiv = document.createElement("div");
       mealDiv.classList.add("card");
-      const mealInfo = `
+      mealInfo = `
                     <img src="${meal.strMealThumb}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h3 class="card-title">${meal.strMeal}</h3>
@@ -34,11 +34,9 @@ const displayMeal = (data) => {
       mealsDiv.appendChild(mealDiv);
     });
   } else {
-    // const notFound = document.getElementById("not-found");
-    // if (notFound == "none") {
-    //   notFound.style.display = "block";
-    // }
-    console.log("Not found");
+    mealInfo = `Opps!We didn't find any food item.Try Another`;
+    // mealsdiv.classlist.add("not-found");
+    mealsDiv.innerHTML = mealInfo;
   }
 };
 loadData();
